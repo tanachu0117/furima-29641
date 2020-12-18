@@ -46,6 +46,7 @@
 
 ### Association
 
+
 - belongs_to :users
 - belongs_to :items
 - has_one :shipping_adress
@@ -65,5 +66,6 @@
 ### Association
 
 - belongs_to :buyer
+
 
 
