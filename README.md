@@ -17,45 +17,48 @@
 
 ### Association
 
-- has_many :itmes
+- has_many :items
 - has_many :buyers
 
 ## items テーブル
 
-| Column        | Type    | Options     |
-| ------------- | ------- | ----------- |
-| name          | string  | null: false |
-| detail        | text    | null: false |
-| category      | string  | null: false |
-| state         | string  | null: false |
-| shipping_fee  | integer | null: false |
-| shipping_days | integer | null: false |
-| price         | integer | null: false |
+| Column         | Type        | Options     |
+| -------------- | ----------- | ----------- |
+| name           | string      | null: false |
+| detail         | text        | null: false |
+| category_id    | integer     | null: false |
+| state          | string      | null: false |
+| prefecture_id  | integer     | null: false |
+| shipping_fee   | integer     | null: false |
+| shipping_days  | integer     | null: false |
+| price          | integer     | null: false |
+| user           | references  | null: false |
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_one :buyers
 
 ## buyers テーブル
 
-| Column   |  Type    | Options     |
-| ---------| -------- | ------------|
-| user_id  | integer  | null: false |
+| Column   |  Type       | Options     |
+| ---------| ----------- | ------------|
+| user     | references  | null: false |
+| item     | references  | null: false |
 
 
 ### Association
 
 
-- belongs_to :users
-- belongs_to :items
-- has_one :shipping_adress
+- belongs_to :user
+- belongs_to :item
+- has_one :shipping_address
 
 ## shipping_address テーブル
 
 | Column          | Type     | Options     |
 | --------------- | -------- | ------------|
-| postal_code     | integer  | null: false |
+| postal_code     | string   | null: false |
 | prefecture_id   | integer  | null: false |
 | city            | string   | null: false |
 | city_number     | string   | null: false |
