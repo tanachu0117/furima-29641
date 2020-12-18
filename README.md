@@ -25,7 +25,7 @@
 | Column        | Type    | Options     |
 | ------------- | ------- | ----------- |
 | name          | string  | null: false |
-| derail        | text    | null: false |
+| detail        | text    | null: false |
 | category      | string  | null: false |
 | state         | string  | null: false |
 | shipping_fee  | integer | null: false |
@@ -51,7 +51,7 @@
 - belongs_to :items
 - has_one :shipping_adress
 
-## shipping_adress テーブル
+## shipping_address テーブル
 
 | Column          | Type     | Options     |
 | --------------- | -------- | ------------|
