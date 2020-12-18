@@ -6,7 +6,7 @@
 
 | Column                        | Type    | Options     |
 | ------------------------------| ------- | ----------- |
-| name                     | string  | null: false |
+| name                          | string  | null: false |
 | email                         | string  | null: false |
 | encrypted_password            | string  | null: false |
 | first_name                    | string  | null: false |
@@ -24,7 +24,7 @@
 
 | Column        | Type    | Options     |
 | ------------- | ------- | ----------- |
-| items_name    | string  | null: false |
+| name          | string  | null: false |
 | derail        | text    | null: false |
 | category      | string  | null: false |
 | state         | string  | null: false |
@@ -39,9 +39,9 @@
 
 ## buyers テーブル
 
-| Column | Type       | Options          |
-| ---------| ---------- | ------------|
-| user_id  | references | null: false |
+| Column   |  Type    | Options     |
+| ---------| -------- | ------------|
+| user_id  | integer  | null: false |
 
 
 ### Association
@@ -52,7 +52,7 @@
 
 ## shipping_adress テーブル
 
-| Column | Type       | Options          |
+| Column          | Type     | Options     |
 | --------------- | -------- | ------------|
 | postal_code     | integer  | null: false |
 | prefecture_id   | integer  | null: false |
