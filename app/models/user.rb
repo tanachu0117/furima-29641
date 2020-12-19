@@ -9,8 +9,7 @@ class User < ApplicationRecord
   validates :birthday, presence: true
 
   with_options presence: true do
-  validates :password, length: {minimum: 6}
-  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])\w{6,12}\z/ }
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i }
   validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
   validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
   validates :first_name_paseudnym_readeing, format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ }
