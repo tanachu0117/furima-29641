@@ -6,9 +6,14 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :email, presence: true
-  validates :password, presence: true
+  validates :birthday, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
+  with_options presence: true do
   validates :password, length: {minimum: 6}
-  VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i
-  validates :password, format: { with: VALID_PASSWORD_REGEX }
-  
+  validates :password, format: { with: /\A[a-z0-9]+\z/i }
+  validates :first_name_paseudnym_readeing, format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ }
+  validates :last_name_paseudnym_readeing, format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ }
+  end
 end
