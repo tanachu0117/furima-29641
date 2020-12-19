@@ -6,6 +6,10 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
+    it "nameとemail、passwordとpassword_confirmation、last_name、first_name、last_name_paseudnym_readeing、frist_name_paseudnym_readeingが存在すれば登録できる" do
+      expect(@user).to be_valid
+    end
+
     it "nameが空だと登録できない" do
       @user.name = nil
       @user.valid?
@@ -107,5 +111,7 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Last name paseudnym readeing is invalid")
     end
+    
   end
+  
 end
