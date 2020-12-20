@@ -12,6 +12,8 @@ class Item < ApplicationRecord
   validates :price, numericality: { greater_than: 300 }
   validates :price, numericality: { less_than: 9999999 }
   validates :price, numericality: { only_integer: true}
+  validates :prefecture_id, numericality: { other_than: 1 } 
 
   belongs_to :user
+  belongs_to :Prefecture
 end
