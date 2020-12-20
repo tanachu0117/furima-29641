@@ -39,13 +39,38 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping days can't be blank", "Shipping days is not a number")
     end
+    it "カテゴリーが空では登録できない" do
+      @item.category_id = 0
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category must be other than 0")
+    end
+    it "商品の状態が空では登録できない" do
+      @item.item_state_id = 0
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Item state must be other than 0")
+    end
+    it "配送料の負担が空だと登録できない" do
+      @item.shipping_fee_id = 0
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping fee must be other than 0")
+    end
+    it "発送元の地域が空では登録できない" do
+      @item.prefecture_id = 0
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
+    end
+    it "発送までの日数が空では登録できない" do
+      @item.shipping_days_id = 0
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping days must be other than 0")
+    end
     it "価格が空では登録できない" do
       @item.price = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end
     it "価格の範囲が、¥300~¥9,999,999の間であること" do
-      @item.price = 1
+      @item.price = 299
       @item.valid?
       expect(@item.errors.full_messages).to include("Price must be greater than 300")
     end
