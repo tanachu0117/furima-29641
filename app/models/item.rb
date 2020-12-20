@@ -8,12 +8,16 @@ class Item < ApplicationRecord
   validates :shipping_days_id, presence: true
   validates :price, presence: true
 
-  validates :price, format: { with: /\A[0-9]+\z/ }
-  validates :price, numericality: { greater_than: 300 }
-  validates :price, numericality: { less_than: 9999999 }
-  validates :price, numericality: { only_integer: true}
-  validates :prefecture_id, numericality: { other_than: 1 } 
-  validates :image, presence: true
+  validates :price            , format: { with: /\A[0-9]+\z/ }
+  validates :price            , numericality: { greater_than: 300 }
+  validates :price            , numericality: { less_than: 9999999 }
+  validates :price            , numericality: { only_integer: true}
+  validates :category_id      , numericality: { other_than: 0 }
+  validates :item_state_id    , numericality: { other_than: 0 } 
+  validates :shipping_fee_id  , numericality: { other_than: 0 } 
+  validates :prefecture_id    , numericality: { other_than: 0 } 
+  validates :shipping_days_id , numericality: { other_than: 0 } 
+  validates :image            , presence: true
 
   belongs_to :user
   has_one_attached :image  
