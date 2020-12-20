@@ -14,5 +14,7 @@ class User < ApplicationRecord
   validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
   validates :first_name_paseudnym_readeing, format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ }
   validates :last_name_paseudnym_readeing, format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ }
+
+  has_many :items
   end
 end
