@@ -13,12 +13,18 @@ class Item < ApplicationRecord
   validates :price, numericality: { less_than: 9999999 }
   validates :price, numericality: { only_integer: true}
   validates :prefecture_id, numericality: { other_than: 1 } 
+  validates :image, presence: true
 
   belongs_to :user
+  has_one_attached :image  
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
   belongs_to :category
   belongs_to :item_state
   belongs_to :shipping_fee
-  belongs_to :hipping_days
-
+  belongs_to :shipping_days
+  
 end
+
+
