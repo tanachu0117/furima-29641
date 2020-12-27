@@ -24,7 +24,6 @@ class Item < ApplicationRecord
   belongs_to :item_state
   belongs_to :shipping_fee
   belongs_to :shipping_days
-  
 end
 
 
