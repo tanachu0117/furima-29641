@@ -16,4 +16,5 @@ class User < ApplicationRecord
   validates :last_name_paseudnym_readeing, format: { with: /\A[\p{katakana} ー－&&[^ -~｡-ﾟ]]+\z/ }  
   end
   has_many :items
+  has_one  :orders
 end
