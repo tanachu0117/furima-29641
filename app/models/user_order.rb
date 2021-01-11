@@ -1,11 +1,11 @@
 class UserOrder
   include ActiveModel::Model
-  attr_accessor :token, :card_nmuber, :expiration_date_manth, :expiration_date_year, :security_number, :postal_code, :prefecture_id, :city, :city_number, :building_name, :phone_number, :item_id, :user_id
+  attr_accessor :token, :number, :exp_manth, :exp_year, :cvc, :postal_code, :prefecture_id, :city, :city_number, :building_name, :phone_number, :item_id, :user_id
 
-  validates :card_nmuber            , presence: true
-  validates :expiration_date_manth  , presence: true
-  validates :expiration_date_year   , presence: true
-  validates :security_number        , presence: true
+  validates :number            , presence: true
+  validates :exp_manth              , presence: true
+  validates :exp_year               , presence: true
+  validates :cvc                    , presence: true
   validates :user_id                , presence: true
   validates :item_id                , presence: true
 
