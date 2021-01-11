@@ -22,8 +22,6 @@ class UserDonation
     user = User.create
     # 住所の情報を保存
     Address.create(postal_code: postal_code, prefecture: prefecture, city: city, house_number: house_number, building_name: building_name,user_id: user.id)
-    # 寄付金の情報を保存
-    Donation.create(price: price, user_id: user.id)
   end
 
 
