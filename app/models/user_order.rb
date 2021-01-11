@@ -1,27 +1,25 @@
-class UserDonation
+class UserOrder
   include ActiveModel::Model
-  attr_accessor :card_nmuber, :expiration_date_manth, :expiration_date_year, :security_number, :postal_code, :prefecture, :city, :house_number, :building_name, :phone_number
+  attr_accessor :card_nmuber, :expiration_date_manth, :expiration_date_year, :security_number, :postal_code, :prefecture_id, :city, :city_number, :building_name, :phone_number, :item_id, :user_id
 
   validates :card_nmuber            , presence: true
   validates :expiration_date_manth  , presence: true
   validates :expiration_date_year   , presence: true
   validates :security_number        , presence: true
+  validates :user_id                , presence: true
+  validates :item_id                , presence: true
 
   with_options presence: true do
     # 「住所」の郵便番号に関するバリデーション
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    # 「寄付金」に関するバリデーション
-    validates :price, numericality: { only_integer: true, message: "is invalid. Input half-width characters." }
     # 「住所」の都道府県に関するバリデーション
-    validates :prefecture, numericality: { other_than: 0, message: "can't be blank" }
-    # 「寄付金」の金額範囲に関するバリデーション
-    validates :price, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 1000000, message: "is out of setting range"}
+    validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
   end
   def save
     # ユーザーの情報を保存し、「user」という変数に入れている
-    user = User.create
+    order = Order.create(item_id: item_id, user_id: user_id)
     # 住所の情報を保存
-    Address.create(postal_code: postal_code, prefecture: prefecture, city: city, house_number: house_number, building_name: building_name,user_id: user.id)
+    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, city_number: city_number, building_name: building_name, phone_number: phone_number, order_id: order.id)
   end
 
 
