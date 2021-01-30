@@ -4,16 +4,17 @@ class UserOrder
 
   validates :user_id                , presence: true
   validates :item_id                , presence: true
-  validates :phone_number           , presence: true
   validates :city                   , presence: true
   validates :city_number            , presence: true
 
   with_options presence: true do
     # 「住所」の郵便番号に関するバリデーション
-    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+    validates :postal_code, format: {with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Include hyphen(-)"}
     # 「住所」の都道府県に関するバリデーション
     validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :phone_number, length: { maximum: 11, message: "is invalid. Unnecessary hyphen(-)"}
   end
+
   def save
     # ユーザーの情報を保存し、「user」という変数に入れている
     order = Order.create!(item_id: item_id, user_id: user_id)
