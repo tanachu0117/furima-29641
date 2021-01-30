@@ -1,11 +1,14 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :set_item, only: [:index, :create]
+  before_action :shipping_user_check, only:[:index, :create]
+  before_action :sold_out_item_check, only:[:index, :create]
+
   def index
-    @item = Item.find(params[:item_id])
     @user_order = UserOrder.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @user_order = UserOrder.new(order_params)
     if @user_order.valid?
       pay_item
@@ -14,10 +17,15 @@ class OrdersController < ApplicationController
     else
       render :index
     end
+
   end
 
 
-  private
+  private  
+
+    def set_item
+      @item = Item.find(params[:item_id])
+    end
 
     def order_params
       params.require(:user_order).permit(:postal_code, :prefecture_id, :city, :city_number, :building_name, :phone_number ).merge(item_id: params[:item_id], token: params[:token], user_id: current_user.id)
@@ -32,4 +40,18 @@ class OrdersController < ApplicationController
       )
     end
 
+    def shipping_user_check
+      if current_user.id == @item.user_id
+        redirect_to root_path
+      end
+    end
+    
+    def sold_out_item_check
+      # @order = Order.find(params[:order_id])
+      if @item.order.present?
+        redirect_to root_path
+      end
+    end
+
 end
+
