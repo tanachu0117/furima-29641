@@ -2,11 +2,13 @@ class UserOrder
   include ActiveModel::Model
   attr_accessor :token, :number, :exp_manth, :exp_year, :cvc, :postal_code, :prefecture_id, :city, :city_number, :building_name, :phone_number, :item_id, :user_id
 
-  validates :user_id                , presence: true
-  validates :item_id                , presence: true
-  validates :city                   , presence: true
-  validates :city_number            , presence: true
-
+  with_options presence: true do
+  validates :user_id    
+  validates :item_id    
+  validates :city       
+  validates :city_number
+  end
+  
   with_options presence: true do
     # 「住所」の郵便番号に関するバリデーション
     validates :postal_code, format: {with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Include hyphen(-)"}

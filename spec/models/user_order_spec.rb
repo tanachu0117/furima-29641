@@ -20,7 +20,6 @@ RSpec.describe UserOrder, type: :model do
     it "電話番号が11桁以内であること" do
       @address.phone_number = "123456789012"
       @address.valid?
-      binding.pry
       expect(@address.errors.full_messages).to include("Phone number is invalid. Unnecessary hyphen(-)")
     end
     it "電話番号にはハイフンは不要であること" do
