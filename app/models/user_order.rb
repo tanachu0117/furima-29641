@@ -5,6 +5,8 @@ class UserOrder
   validates :user_id                , presence: true
   validates :item_id                , presence: true
   validates :phone_number           , presence: true
+  validates :city                   , presence: true
+  validates :city_number            , presence: true
 
   with_options presence: true do
     # 「住所」の郵便番号に関するバリデーション
