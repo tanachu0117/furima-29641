@@ -7,6 +7,7 @@ FactoryBot.define do
     city                          {Faker::Address.city}
     city_number                   {"1-3"}
     building_name                 {"梅田ビル"}
-    phone_number                  {"0900000000"}
+    phone_number                  {"09000000000"}
+    token                         {"1234567890"}
   end
 end

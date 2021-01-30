@@ -7,14 +7,15 @@ class UserOrder
   validates :item_id    
   validates :city       
   validates :city_number
+  validates :token
   end
-  
+
   with_options presence: true do
     # 「住所」の郵便番号に関するバリデーション
     validates :postal_code, format: {with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Include hyphen(-)"}
     # 「住所」の都道府県に関するバリデーション
     validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
-    validates :phone_number, length: { maximum: 11, message: "is invalid. Unnecessary hyphen(-)"}
+    validates :phone_number, format: {with: /\A\d{10,11}\z/, message: "is invalid. Unnecessary hyphen(-)"}
   end
 
   def save
