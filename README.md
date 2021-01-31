@@ -39,7 +39,7 @@
 - belongs_to :user
 - has_one    :buyer
 
-## buyers テーブル
+## orders テーブル
 
 | Column   |  Type       | Options           |
 | ---------| ----------- | ----------------- |
@@ -52,9 +52,9 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :shipping_address
+- has_one :address
 
-## shipping_address テーブル
+## address テーブル
 
 | Column          | Type       | Options           |
 | --------------- | ---------- | ----------------- |
@@ -64,11 +64,11 @@
 | city_number     | string     | null: false       |
 | building_name   | string     |                   |
 | phone_number    | string     | null: false       |
-| buyer           | references | foreign_key: true |
+| order           | references | foreign_key: true |
 
 ### Association
 
-- belongs_to :buyer
+- belongs_to :order
 
 
 
