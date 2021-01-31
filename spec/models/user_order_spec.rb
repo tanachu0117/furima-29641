@@ -10,6 +10,11 @@ RSpec.describe UserOrder, type: :model do
       @address.valid?
       expect(@address).to be_valid
     end
+
+    it "すべての情報がある場合登録できること" do
+      @address.valid?
+      expect(@address).to be_valid
+    end
   end
 
 
